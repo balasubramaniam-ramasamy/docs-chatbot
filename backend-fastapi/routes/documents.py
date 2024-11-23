@@ -4,8 +4,6 @@ from database import get_session
 from models import Document
 from schemas import DocumentCreate, DocumentResponse, QueryRequest
 from llm_engine import get_relevant_documents
-import os
-os.environ['REQUESTS_CA_BUNDLE']= "C:\WorkNew\ZscalerRootCerttificate.pem"
 
 router = APIRouter(prefix="/documents", tags=["Documents"])
 

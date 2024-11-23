@@ -62,6 +62,16 @@ Please run all angular/cli and npm commands of frontend (angular/UI), inside 'fr
 * Run below command and check your version in case of any weird errors
 * npm -v
 
+## localhost:portnumber is valid in Codespaces?
+Not really, you need replace the backend references mentioning with localhost to actual domain name.
+For Frontend, it will look like this https://ominous-system-r4xjr4w46j7c5q9g-4200.app.github.dev/auth/login
+
+For Nodejs backend instead of localhost:5000 replace with (actual) for e.g., https://ominous-system-r4xjr4w46j7c5q9g-5000.app.github.dev/api-docs/
+
+For FastAPI backend instead of localhost:5000 replace with (actual) for e.g., https://ominous-system-r4xjr4w46j7c5q9g-8000.app.github.dev/docs
+
+Please, note the port number's location - it is before the domain name - github.dev. 
+
 ## Can I see the snapshots of the app?
 Yes, please refer below images.
 1. User Registration

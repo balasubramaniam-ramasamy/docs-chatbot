@@ -2,8 +2,6 @@ from sentence_transformers import SentenceTransformer, util
 from typing import List
 
 # Initialize sentence transformer model for document embeddings
-import os
-os.environ['REQUESTS_CA_BUNDLE']= "C:\WorkNew\ZscalerRootCerttificate.pem"
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 

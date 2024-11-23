@@ -1,6 +1,4 @@
 from sqlmodel import SQLModel, create_engine, Session
-import os
-os.environ['REQUESTS_CA_BUNDLE']= "C:\WorkNew\ZscalerRootCerttificate.pem"
 
 from pathlib import Path
 

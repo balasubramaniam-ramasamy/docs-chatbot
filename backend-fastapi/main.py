@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 from database import create_db_and_tables
 from routes import documents
-import os
-os.environ['REQUESTS_CA_BUNDLE']= "C:\WorkNew\ZscalerRootCerttificate.pem"
 
 
 from fastapi import FastAPI

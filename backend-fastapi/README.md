@@ -4,6 +4,7 @@ Tech Stack - This backend is FastApi based.
 ## Create and Activate venv
 python -m venv venv-fastapi
 venv-fastapi\Scripts\activate 
+in case of linux look for and run `venv-fastapi\bin\activate` or install and run in your conda environment.
 
 ## Install
 pip install -r requirements.txt
