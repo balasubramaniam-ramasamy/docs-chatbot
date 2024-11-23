@@ -1,0 +1,55 @@
+@import './../../shared/shared.style.less';
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+}
+
+.docs-container {
+  width: 100%;
+  // min-height: 280px;
+  max-height: 380px;
+  overflow-y: scroll;
+}
+
+
+.common-style {
+  width: 100%;
+  background-color: whitesmoke !important;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.custom-title {
+  .common-style;
+  margin-top: 10px;
+}
+
+.custom-content {
+  .common-style;
+}
+
+.column-header {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+// hr.linestyle {
+//   border: 3px solid black;
+//   border-radius: 2px;
+//   margin-left: 10px;
+//   margin-right: 10px;
+// }

@@ -1,0 +1,38 @@
+<div class="container-fluid rounded p-2 bg-info bg-gradient">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light rounded p-2">
+    <div>
+      <i class="bi bi-robot text-primary m-1"></i>
+      <a class="navbar-brand m-1" routerLink="/documents">Docs Chatbot</a>
+    </div>
+    <div class="collapse navbar-collapse justify-content-center">
+      <ul class="navbar-nav">
+        <li *ngIf="!isLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active-link">Login</a>
+        </li>
+        <li *ngIf="!isLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/auth/register" routerLinkActive="active-link">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/docs/documents" routerLinkActive="active-link">Documents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/docs/query" routerLinkActive="active-link">Query</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/docs/upload" routerLinkActive="active-link">Upload</a>
+        </li>
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/auth/logout" routerLinkActive="active-link">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div *ngIf="isLoggedIn()" class="rounded p-2">
+        <label>Welcome, {{ getUserName() }}!</label>
+      </div>
+    </div>
+  </nav>
+  <div id="chat-container" class="chat-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

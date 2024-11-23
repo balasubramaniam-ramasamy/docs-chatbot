@@ -1,0 +1,40 @@
+<div class="container mt-1">
+  <div *ngIf="!errorMessage">
+    <h2>Your Documents.</h2>
+    <div class="row">
+      <div class="col-sm-3">
+        <label class="column-header">Title</label>
+      </div>
+      <div class="col-md">
+        <label class="column-header">Content</label>
+      </div>
+    </div>
+    <div class="docs-container">
+      <form>
+        <ul *ngIf="documents.length > 0">
+          <li *ngFor="let doc of documents">
+            <div class="row">
+              <div class="col-sm-3">
+                <label class="custom-title">
+                  <input [checked]="doc.checked" type="checkbox" (change)="toggleSelection(doc.id)" /> {{
+                  doc.title }}
+                </label>
+              </div>
+              <div class="col-md">
+                <textarea class="custom-content" disabled>{{doc.content}}</textarea>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
+
+    <button class="btn btn-primary mt-3" (click)="promptDocuments()">Query Selected</button>
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+</div>

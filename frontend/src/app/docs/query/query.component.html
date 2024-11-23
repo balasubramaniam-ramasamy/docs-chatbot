@@ -1,0 +1,35 @@
+<div class="container mt-5 response-container">
+  <div *ngIf="documents.length > 0">
+    <h2>Query Documents</h2>
+    <form>
+      <div>
+        <label>Select Documents:</label>
+        <ul class="mt-3">
+          <li *ngFor="let doc of documents">
+            <label class="mt-4">
+              <input [checked]="doc.checked" type="checkbox" [value]="doc.id"
+                (change)="onDocumentSelectionChange($event, doc.id)" />
+              {{ doc.title }}
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <label for="queryText">Your Query:</label>
+        <textarea class="rounded" name="queryText" id="queryText" [(ngModel)]="queryText"
+          placeholder="Type your query here" rows="3"></textarea>
+      </div>
+      <button class="rounded" type="button" (click)="sendQuery()">Submit Query</button>
+    </form>
+  </div>
+  <div *ngIf="response">
+    <h3 class="mt-2">Response</h3>
+    <p>{{ response }}</p>
+  </div>
+  <div *ngIf="documents.length < 1" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+</div>
