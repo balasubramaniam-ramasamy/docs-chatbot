@@ -1,77 +1,61 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { FormsModule } from '@angular/forms';
-// import { Router } from '@angular/router';
-// import { of } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LoginComponent } from './login.component';
+import { CommonModule } from '@angular/common';  // for ngIf, ngFor, etc.
+import { FormsModule } from '@angular/forms';   // for ngModel
+import { AuthService } from '../services/auth.service';
+import { of, throwError } from 'rxjs';
 
-// import { LoginComponent } from './login.component';
-// import { AuthService } from '../services/auth.service';
+describe('LoginComponent (Standalone)', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
+  let authServiceMock: jasmine.SpyObj<AuthService>;
 
-// describe('LoginComponent', () => {
-//     let component: LoginComponent;
-//     let fixture: ComponentFixture<LoginComponent>;
-//     let authServiceSpy: jasmine.SpyObj<AuthService>;
-//     let routerSpy: jasmine.SpyObj<Router>;
+  beforeEach(() => {
+    // Mock AuthService
+    authServiceMock = jasmine.createSpyObj('AuthService', ['login']);
+    
+    TestBed.configureTestingModule({
+      imports: [LoginComponent, CommonModule, FormsModule],  // Import LoginComponent and other necessary modules
+      providers: [{ provide: AuthService, useValue: authServiceMock }]
+    }).compileComponents();
 
-//     beforeEach(async () => {
-//         const authSpy = jasmine.createSpyObj('AuthService', ['login']);
-//         const routerSpyObj = jasmine.createSpyObj('Router', ['navigate']);
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+  });
 
-//         await TestBed.configureTestingModule({
-//             declarations: [LoginComponent],
-//             imports: [FormsModule],
-//             providers: [
-//                 { provide: AuthService, useValue: authSpy },
-//                 { provide: Router, useValue: routerSpyObj },
-//             ],
-//         }).compileComponents();
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
 
-//         fixture = TestBed.createComponent(LoginComponent);
-//         component = fixture.componentInstance;
-//         authServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
-//         routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-//         fixture.detectChanges();
-//     });
+  it('should call login service on form submission', () => {
+    const email = 'testUser@test.com';
+    const password = 'password123';
+    component.credentials.email = email;
+    component.credentials.password = password;
 
-//     it('should create the component', () => {
-//         expect(component).toBeTruthy();
-//     });
+    // Simulate successful login
+    authServiceMock.login.and.returnValue(of({ token: 'mockToken', user: { id: '1', name: "Tes Me"} }));
 
-//     it('should call AuthService.login on submit', () => {
-//         // Arrange
-//         const loginCredentials = { username: 'testuser', password: 'testpass' };
-//         component.username = loginCredentials.username;
-//         component.password = loginCredentials.password;
-//         authServiceSpy.login.and.returnValue(of({ token: 'testtoken' }));
+    fixture.detectChanges(); // trigger change detection
 
-//         // Act
-//         component.onSubmit();
+    component.onSubmit();
 
-//         // Assert
-//         expect(authServiceSpy.login).toHaveBeenCalledOnceWith(loginCredentials);
-//         expect(routerSpy.navigate).toHaveBeenCalledWith(['/documents']);
-//     });
+    expect(authServiceMock.login).toHaveBeenCalledWith( {email, password});
+  });
 
-//     it('should not call AuthService.login if credentials are empty', () => {
-//         // Arrange
-//         component.username = '';
-//         component.password = '';
+  it('should handle login error', () => {
+    const email = 'testUser@test.com';
+    const password = 'password123';
+    component.credentials.email = email;
+    component.credentials.password = password;
 
-//         // Act
-//         component.onSubmit();
+    // Simulate login error
+    authServiceMock.login.and.returnValue(throwError(() => new Error('Invalid username or password.')));
 
-//         // Assert
-//         expect(authServiceSpy.login).not.toHaveBeenCalled();
-//     });
+    fixture.detectChanges();
 
-//     it('should show an error message on login failure', () => {
-//         // Arrange
-//         const errorMessage = 'Invalid credentials';
-//         authServiceSpy.login.and.returnValue(of({ error: errorMessage }));
+    component.onSubmit();
 
-//         // Act
-//         component.onSubmit();
-
-//         // Assert
-//         expect(component.errorMessage).toBe(errorMessage);
-//     });
-// });
+    expect(component.errorMessage).toBe('Invalid username or password.');
+  });
+});

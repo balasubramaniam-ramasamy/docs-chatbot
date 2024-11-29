@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Summarize, what are the commands to run in order?
 * Please run below commands if you are comfortable. Otherwise, please, read the following sections for more detailed steps.
 * git clone https://github.com/balasubramaniam-ramasamy/docs-chatbot
-* cd frontend
+* cd frontend (if not already in this directory)
 * npm install -g @angular/cli@17.0.0
 * npm install
 * ng build (optional)
@@ -50,7 +50,7 @@ Please run all angular/cli and npm commands of frontend (angular/UI), inside 'fr
 * npm install -g @angular/cli@17.0.0
 * npm install
 * ng build (optional)
-* ng serve
+* ng serve or npm start
 
 ## What is the dependent Node version?
 * v20.15.1 / v20.17.0

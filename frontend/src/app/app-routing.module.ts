@@ -10,13 +10,6 @@ import { LogoutComponent } from './auth/logout/logout.component';
 import { AuthGuard } from './auth/services/auth.guard';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/login', pathMatch: 'full' },
-  // { path: 'login', component: LoginComponent },
-  // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-  // { path: 'documents', component: DocumentsComponent, canActivate: [AuthGuard] },
-  // { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] },
-  // { path: 'query', component: QueryComponent, canActivate: [AuthGuard] },
-  // { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
