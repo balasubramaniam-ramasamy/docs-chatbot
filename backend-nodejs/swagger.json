@@ -9,7 +9,7 @@
     "/api/register": {
       "post": {
         "summary": "Register a new user",
-        "description": "This endpoint allows a user to register with a username, email, and password.",
+        "description": "This endpoint allows a user to register with a name, email, and password.",
         "requestBody": {
           "required": true,
           "content": {
@@ -19,8 +19,8 @@
                 "properties": {
                   "name": {
                     "type": "string",
-                    "example": "john_doe",
-                    "description": "user name"
+                    "example": "John Doe",
+                    "description": "user full name"
                   },
                   "email": {
                     "type": "string",
@@ -32,7 +32,7 @@
                   }
                 },
                 "required": [
-                  "username",
+                  "name",
                   "email",
                   "password"
                 ]
@@ -78,7 +78,7 @@
                   }
                 },
                 "required": [
-                  "username",
+                  "email",
                   "password"
                 ]
               }

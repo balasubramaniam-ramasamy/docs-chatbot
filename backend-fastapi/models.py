@@ -7,4 +7,4 @@ class Document(SQLModel, table=True):
     user_id: int
     # = Field(foreign_key="users.id")  # Refers to 'id' in the 'users' table
 
-# Note: You already have a 'users' table defined by Node.js; we will not touch it.
+# Note: We already have a 'users' table defined in backend-nodejs; we will not touch it.

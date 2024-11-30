@@ -11,8 +11,9 @@ app = FastAPI()
 # Allow all origins or specify a list of origins
 origins = [
     "http://localhost",  # Frontend URL
-    "http://localhost:4200",  # If you're using React, for example
-    # You can add more origins if needed
+    "http://localhost:3000",  # If we're using React, for example
+    "http://localhost:4200",  # If we're using Angular, for example
+    # We can add more origins if needed
 ]
 
 app.add_middleware(
