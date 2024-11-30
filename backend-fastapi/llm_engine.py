@@ -4,7 +4,6 @@ from typing import List
 
 import os
 #os.environ['REQUESTS_CA_BUNDLE']= "C:\<PathTo>\<NameOf>Certificate.pem"
-os.environ['REQUESTS_CA_BUNDLE']= "C:\WorkNew\ZscalerRootCerttificate.pem"
 
 # Initialize sentence transformer model for document embeddings
 
