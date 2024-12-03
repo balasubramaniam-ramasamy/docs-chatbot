@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h2>Upload Document</h2>
-  <form (submit)="uploadDocument()">
+  <form (submit)="uploadDocument()" ngNativeValidate>
     <div class="form-group">
       <label for="documentName">Document Name</label>
       <input id="documentName" type="text" class="form-control" [(ngModel)]="documentName" name="documentName"
@@ -11,7 +11,16 @@
       <textarea id="documentContent" class="form-control" rows="5" [(ngModel)]="documentContent" name="documentContent"
         required></textarea>
     </div>
-    <button type="submit" class="btn btn-primary mt-3">Upload</button>
+    <button *ngIf="!isLoading" type="submit" class="btn btn-primary mt-3">Upload</button>
+    <div class="row justify-content-center">
+      <button *ngIf="isLoading" class="mt-2 rounded bg-primary text-white" style="width: 98%;" type="button" disabled>
+
+        <span class="spinner-border spinner-border-sm font-weight-bold p-1" role="status" aria-hidden="true">
+        </span>
+        Uploading...
+        <i class="bi bi-upload h6"></i>
+      </button>
+    </div>
     <div *ngIf="successMessage" class="alert alert-success mt-3">
       {{ successMessage }}
     </div>

@@ -3,5 +3,6 @@
 # __pycache__
 /__pycache__
 /routes/__pycache__
+/venv-fastapi
 
 # Add new

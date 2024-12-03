@@ -1,25 +1,25 @@
 <div class="container-fluid rounded p-2 my-info bg-gradient">
   <h6>{{title}}</h6>
-  <nav class="navbar navbar-expand-sm navbar-light bg-light rounded p-2">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light text-white rounded p-2">
     <div>
-      <i class="bi bi-robot text-primary m-1"></i>
+      <i class="bi bi-search-heart-fill text-primary m-1 h4"></i>
       <a class="navbar-brand m-1" routerLink="/documents">Docs Chatbot</a>
     </div>
     <div class="collapse navbar-collapse justify-content-center">
       <ul class="navbar-nav">
-        <li *ngIf="!isLoggedIn()" class="nav-item">
+        <li *ngIf="!isLoggedIn()" class="nav-item nav-margin">
           <a class="nav-link" routerLink="/auth/login" routerLinkActive="active-link">Login</a>
         </li>
-        <li *ngIf="!isLoggedIn()" class="nav-item">
+        <li *ngIf="!isLoggedIn()" class="nav-item nav-margin">
           <a class="nav-link" routerLink="/auth/register" routerLinkActive="active-link">Register</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-margin">
           <a class="nav-link" routerLink="/docs/documents" routerLinkActive="active-link">Documents</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-margin">
           <a class="nav-link" routerLink="/docs/query" routerLinkActive="active-link">Query</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-margin">
           <a class="nav-link" routerLink="/docs/upload" routerLinkActive="active-link">Upload</a>
         </li>
         <li *ngIf="isLoggedIn()" class="nav-item">
@@ -28,7 +28,7 @@
       </ul>
     </div>
     <div>
-      <div *ngIf="isLoggedIn()" class="rounded p-2">
+      <div *ngIf="isLoggedIn()" class="rounded p-2 text-dark font-weight-bold">
         <label>Welcome, {{ getUserName() }}!</label>
       </div>
     </div>

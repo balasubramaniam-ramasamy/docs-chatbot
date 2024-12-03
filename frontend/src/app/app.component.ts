@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 export class AppComponent implements OnChanges {
   constructor(private authService: AuthService) { }
-  title = 'Welcome to, DocsBot!'
+  title = 'Welcome to, DocsBot - the semantic document search destination!'
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }

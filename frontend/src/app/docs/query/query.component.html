@@ -1,7 +1,7 @@
 <div class="container mt-5 response-container">
   <div *ngIf="documents.length > 0">
     <h2>Query Documents</h2>
-    <form>
+    <form ngNativeValidate>
       <div>
         <label>Select Documents:</label>
         <ul class="mt-3">
@@ -17,10 +17,19 @@
       <div>
         <label for="queryText">Your Query:</label>
         <textarea class="rounded" name="queryText" id="queryText" [(ngModel)]="queryText"
-          placeholder="Type your query here" rows="3"></textarea>
+          placeholder="Type your query here" rows="3" required></textarea>
       </div>
-      <button class="rounded" type="button" (click)="sendQuery()">Submit Query</button>
+      <button *ngIf="!isLoading" class="rounded" type="button" (click)="sendQuery()">Submit Query</button>
     </form>
+  </div>
+  <div class="row justify-content-center">
+    <button *ngIf="isLoading" class="mt-2 rounded bg-primary text-white" style="width: 98%;" type="button" disabled>
+
+      <span class="spinner-border spinner-border-sm font-weight-bold p-1" role="status" aria-hidden="true">
+      </span>
+      Searching...
+      <i class="bi bi-search-heart-fill h6"></i>
+    </button>
   </div>
   <div *ngIf="response">
     <h3 class="mt-2">Response</h3>

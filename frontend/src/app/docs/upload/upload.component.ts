@@ -20,6 +20,7 @@ export class UploadComponent implements OnInit {
     user_id: number = 0;
     successMessage: string | null = null;
     errorMessage: string | null = null;
+    isLoading: boolean = false;
 
     constructor(private docsService: DocumentsService, private sharedService: SharedService) { }
     ngOnInit(): void {
@@ -27,6 +28,7 @@ export class UploadComponent implements OnInit {
     }
 
     uploadDocument() {
+        this.reset();
         const documentData = {
             user_id: this.user_id,
             title: this.documentName,
@@ -36,18 +38,29 @@ export class UploadComponent implements OnInit {
         this.docsService.uploadDocument(documentData).subscribe({
             next: (response) => {
                 console.log(response)
-                this.successMessage = 'Document uploaded successfully!';
-                this.errorMessage = null;
+
                 // remove the stale data from cache.
                 this.sharedService.setAllDocuments([]);
+                let self = this;
+                setTimeout(function () {
+                    self.isLoading = false;
+                    self.successMessage = 'Document uploaded successfully!';
+                }, 1500); // purposely delay to show some loading animation.
             },
             error: (error) => {
-                console.error(error)
-                this.successMessage = null;
+                console.error(error);
                 this.errorMessage = 'Failed to upload the document.';
                 // remove the stale data from cache.
-                this.sharedService.setAllDocuments([]);
+                // Not needed below, in case of no new upload happened successfully. 
+                // this.sharedService.setAllDocuments([]);
+                this.isLoading = false;
             },
         });
+    }
+
+    private reset() {
+        this.isLoading = true;
+        this.errorMessage = null;
+        this.successMessage = null;
     }
 }

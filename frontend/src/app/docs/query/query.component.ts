@@ -21,6 +21,7 @@ export class QueryComponent implements OnInit, DoCheck {
   queryText: string = '';
   response = '';
   isPromptUpdated: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private docsService: DocumentsService, private sharedService: SharedService) { }
 
@@ -76,17 +77,21 @@ export class QueryComponent implements OnInit, DoCheck {
       alert('Please enter a query and select at least one document.');
       return;
     }
-
+    this.reset();
     const query = {
       document_ids: docs,
       query: this.queryText,
     };
-
     this.docsService.queryDocuments(query).subscribe({
       next: (response) => {
         console.log(response)
-        this.response = response.toString();
-        this.isPromptUpdated = true;
+
+        let self = this;
+        setTimeout(function () {
+          self.isLoading = false;
+          self.response = response.toString();
+          self.isPromptUpdated = true;
+        }, 1500); // purposely delay to show some loading animation.
       },
       error: (error) => {
         console.error(error)
@@ -110,10 +115,17 @@ export class QueryComponent implements OnInit, DoCheck {
     }
   }
 
-  scrollToBottom(): void {
+  private scrollToBottom(): void {
     console.log("scrollToBottom");
     let container = document.getElementById("chat-container");
     if (container)
       container.scrollTop = container?.scrollHeight;
+  }
+
+  private reset() {
+    this.isLoading = true;
+    this.response = '';
+    this.successMessage = null;
+    this.errorMessage = null;
   }
 }
